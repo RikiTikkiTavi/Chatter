@@ -17,6 +17,8 @@ def pre_process(text):
 
     words = word_tokenize(text, language)
 
+    print(words)
+
     stemmer = SnowballStemmer(language)
 
     return ' '.join(
