@@ -1,5 +1,15 @@
+import abc
+
+
 class ResultHandler:
 
     @staticmethod
-    def handle(query_result):
-        print(query_result)
+    @abc.abstractmethod
+    def do_handle(records):
+        return list(map(lambda r: r[0], records))
+
+    @staticmethod
+    def handle(records):
+        handled = __class__.do_handle(records)
+        print(handled)
+        return handled
