@@ -11,5 +11,4 @@ class ResultHandler:
     @staticmethod
     def handle(records):
         handled = __class__.do_handle(records)
-        print(handled)
         return handled

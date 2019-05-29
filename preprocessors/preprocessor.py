@@ -25,6 +25,6 @@ class Preprocessor:
 
     def process(self, text):
         words_stream = Stream(self.__spacy_nlp(text)) \
-            .filter(lambda r: r.is_stop is not True) \
+            .filter(lambda r: r.lemma_ not in self.__stop_words) \
             .map(lambda r: r.lemma_)
         return list(words_stream)

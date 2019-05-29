@@ -4,6 +4,7 @@ from .config import password
 from .config import db_name
 from .executor import Executor
 from .result_handlers.synonyms_result_handler import SynonymsResultHandler
+from .result_handlers.synsets_result_handler import SynsetsResultHandler
 from .query_manager import QueryManager
 
 
@@ -23,5 +24,9 @@ class DBService:
     def get_synonyms(self, word):
         ex = Executor(SynonymsResultHandler, self.cursor)
         query = QueryManager.get_synonyms_query().format(word)
-        print(query)
-        ex.do_query(query)
+        return ex.do_query(query)
+
+    def get_synsets(self, word):
+        ex = Executor(SynsetsResultHandler, self.cursor)
+        query = QueryManager.get_synsets_query().format(word)
+        return ex.do_query(query)
