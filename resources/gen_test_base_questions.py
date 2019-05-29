@@ -9,6 +9,8 @@ pre = Preprocessor()
 
 processed_words_arrs = list(map(pre.process, questions))
 
+print(processed_words_arrs)
+
 sentences = []
 
 for s_i, s in enumerate(processed_words_arrs):
