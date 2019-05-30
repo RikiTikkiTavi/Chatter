@@ -1,16 +1,15 @@
-from db_tools.db_service import DBService
-
-
 class SynProcessor:
-    def __init(self):
-        self.dbs = DBService()
+    dbs = None
 
-    def process(self, words):
+    def __init__(self, database_service):
+        self.dbs = database_service
+
+    def process(self, words_processed, sentence_raw):
         sentence = {
-            'sentence': ' '.join(words),
+            'sentence_raw': sentence_raw,
             'words': []
         }
-        for w in words:
+        for w in words_processed:
             sentence['words'].append({
                 'word': w,
                 'synsets': self.dbs.get_synsets(w)

@@ -1,6 +1,6 @@
 [
   {
-    "sentence": "Stunde buchen ?",
+    "sentence_raw": "Wo kann ich meinen Stunden buchen?",
     "words": [
       {
         "word": "Stunde",
@@ -24,7 +24,7 @@
     ]
   },
   {
-    "sentence": "Nachricht h\u00f6ren ?",
+    "sentence_raw": "Hast du die Nachrichten geh\u00f6rt?",
     "words": [
       {
         "word": "Nachricht",
@@ -51,7 +51,7 @@
     ]
   },
   {
-    "sentence": "hallo",
+    "sentence_raw": "Hallo",
     "words": [
       {
         "word": "hallo",
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "sentence": "Programmierer ?",
+    "sentence_raw": "Bist du ein Programmierer?",
     "words": [
       {
         "word": "Programmierer",

@@ -1,30 +1,19 @@
-from nltk.stem import SnowballStemmer
-from nltk.tokenize import word_tokenize
-import nltk.downloader
-from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfVectorizer
-import spacy
-from spacy.lemmatizer import Lemmatizer
-from .lemma_processor import LemmaProcessor
 from streams import Stream
+from preprocessors.nlp_processor import NLPProcessor
+from preprocessors.syn_processor import SynProcessor
 
 
-# Must be instantiated once
-# TODO: Implement singleton
 class Preprocessor:
-    __language = "german"
-    __nltk = nltk
-    __spacy_nlp = spacy.load('de_core_news_sm')
+    __nlp_proc = None
+    __syn_proc = None
 
-    __stop_words = None
+    def __init__(self, database_service):
+        self.__nlp_proc = NLPProcessor()
+        self.__syn_proc = SynProcessor(database_service)
 
-    def __init__(self):
-        self.__nltk.download("punkt")
-        self.__nltk.download("stopwords")
-        self.__stop_words = set(stopwords.words(self.__language))
+    def process_single(self, sentence_raw):
+        words_processed = self.__nlp_proc.process(sentence_raw)
+        return self.__syn_proc.process(words_processed, sentence_raw)
 
-    def process(self, text):
-        words_stream = Stream(self.__spacy_nlp(text)) \
-            .filter(lambda r: r.lemma_ not in self.__stop_words) \
-            .map(lambda r: r.lemma_)
-        return list(words_stream)
+    def process_multiple(self, sentence_raw_list):
+        return list(map(self.process_single, sentence_raw_list))
